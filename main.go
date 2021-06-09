@@ -8,6 +8,9 @@ import (
 )
 
 func main() {
+
+	boatarde := &tb.Audio{File: tb.FromDisk("assets/boatarde.ogg")}
+
 	b, err := tb.NewBot(tb.Settings{
 		// You can also set custom API URL.
 		// If field is empty it equals to "https://api.telegram.org".
@@ -29,11 +32,9 @@ func main() {
 	b.Handle("/sobre", func(m *tb.Message) {
 		b.Send(m.Chat, "Bot open source em Go, visite: github.com/jeanlucaslima/tgbot/")
 	})
-	b.Handle("/hello", func(m *tb.Message) {
-		b.Send(m.Chat, "Hello World!")
-	})
-	b.Handle("/hello", func(m *tb.Message) {
-		b.Send(m.Chat, "Hello World!")
+
+	b.Handle("/boatarde", func(m *tb.Message) {
+		b.Send(m.Chat, boatarde)
 	})
 
 	b.Start()
